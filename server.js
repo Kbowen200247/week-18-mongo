@@ -24,6 +24,11 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 
+// Requiring Handlebars
+let exphbs = require("express-handlebars");
+app.engine("handlebars", exphbs({defaultLayout: "main"}));
+app.set("view engine", "handlebars");
+
 // Make public a static dir
 app.use(express.static("public"));
 
@@ -42,6 +47,22 @@ db.once("open", function() {
 });
 
 // Routes
+// A GET request to scrape the echojs website
+// 
+app.get("/", function(req, res) {
+  // Grab every doc in the Articles array
+  Article.find({}, function(error, doc) {
+    // Log any errors
+    if (error) {
+      console.log(error);
+    }
+    // Or send the doc to the browser as a json object
+    else {
+      //res.json(doc);
+      res.render("index", {articles: doc});
+    }
+  });
+});
 
 // A GET request to scrape the echojs website
 app.get("/scrape", function(req, res) {
@@ -76,7 +97,8 @@ app.get("/scrape", function(req, res) {
 		});
 	});
 	// Tell the browser that we finished scraping the text
-	res.send("Scrape Complete");
+	// res.send("Scrape Complete");
+	res.redirect("/");
 });
 
 // This will get the articles we scraped from the mongoDB
