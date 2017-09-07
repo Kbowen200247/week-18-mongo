@@ -1,0 +1,28 @@
+<h1>Articles</h1>
+
+<ul>
+	{{#each plans}}
+		<li>
+			<p>
+				{{this.id}}. {{this.plan}}
+				<form action="/{{this.id}}?_method=DELETE" method="POST">
+					<input type="hidden" name="id" value="{{this.id}}">
+					<button type="submit">Delete Articles</button>
+				</form>
+			</p>
+		</li>
+	{{/each}}
+</ul>
+
+<h2>Create Articles</h2>
+<form method="POST" action="/" class="button-size">
+	<textarea type="text" name="plan"></textarea>
+	<button type="submit">Save Articles!</button>
+</form>
+
+<h2>Update Articles</h2>
+<form action="/?_method=PUT" method="POST" class="button-size">
+  <input type="text" name="id" placeholder="id">
+	<textarea type="text" name="plan" placeholder="plan"></textarea>
+	<button type="submit">Update Articles!</button>
+</form>
