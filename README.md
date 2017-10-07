@@ -43,4 +43,4 @@ Create an app that follows this user story:
 
 4. You'll need to use Mongoose's model system to associate comments with particular articles.
 
-<img width="800" alt="Burgers" src="https://github.com/Kbowen200247/week-18-mongo/MongoScraper.png">
+<img width="800" alt="Mongo" src="https://github.com/Kbowen200247/week-18-mongo/blob/master/MongoScraper.png?raw=true">
